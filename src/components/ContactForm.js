@@ -2,27 +2,43 @@ import { useState } from "react";
 import styles from "../components/form.module.css";
 import ContactList from "./ContactList";
 
-const ContactForm = () => {
-  const [state, setState] = useState([]);
+const ContactForm = ({ contacts, setContacts }) => {
+  //const [state, setState] = useState([]);
+  //const [input, setInput] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
   //console.log(state);
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-    console.log(state);
-    setState([...state, { name: state.name, email: state.email, id: 1 }]);
+    //console.log(state);
+    setContacts([
+      ...contacts,
+      {
+        id: Math.floor(Math.random() * 10),
+        name: name.name,
+        email: email.email,
+      },
+    ]);
+    /* setEmail("");
+    setName(""); */
   };
 
   const nameHandler = (e) => {
-    console.log(e.target.value);
-    setState({ name: e.target.value });
+    //console.log(e.target.value);
+    setName({ name: e.target.value });
   };
   const emailHandler = (e) => {
-    console.log(e.target.value);
-    setState({ email: e.target.value });
+    //console.log(e.target.value);
+    setEmail({ email: e.target.value });
   };
+  //console.log(name);
+  //console.log(email);
+  //console.log(contacts);
   return (
     <main className={styles.main}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={submitFormHandler}>
         <h2>Add Contact</h2>
         <label htmlFor="input_name">Name</label>
         <input
@@ -30,7 +46,8 @@ const ContactForm = () => {
           name="name"
           id="input_name"
           onChange={nameHandler}
-          value={state.name}
+          value={contacts.name}
+          //?
         />
         <label htmlFor="input_email">Email</label>
         <input
@@ -38,17 +55,14 @@ const ContactForm = () => {
           name="email"
           id="input_email"
           onChange={emailHandler}
-          value={state.email}
+          value={contacts.email}
+          //?
         />
-        <button className={styles.btn} onClick={submitFormHandler}>
+        <button type="submit" className={styles.btn}>
           Add
         </button>
       </form>
-      <ContactList
-        /* submitFormHandler={submitFormHandler}
-        setState={setState} */
-        state={state}
-      />
+      <ContactList contacts={contacts} />
     </main>
   );
 };
