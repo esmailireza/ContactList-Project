@@ -1,15 +1,18 @@
 import styles from "./form.module.css";
-const ContactList = ({ state }) => {
+const ContactList = ({ contacts }) => {
+  //console.log(contacts);
   return (
     <>
-      {state.map((co) => {
-        console.log(co);
-        console.log("contact:", co.name);
+      {contacts.map((contactItem) => {
+        console.log(contactItem);
+        console.log("contact:", contactItem.name);
+        console.log("contact:", contactItem.email);
+        console.log("id:", contactItem.id);
         return (
           <ul className={styles.ul}>
-            <li key={co.id}>
-              <p>{co.name}</p>
-              <span>{co.email}</span>
+            <li key={contactItem.id}>
+              <p>{contactItem.name}</p>
+              <span>{contactItem.email}</span>
               <hr />
             </li>
           </ul>
