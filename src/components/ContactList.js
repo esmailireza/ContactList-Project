@@ -1,5 +1,5 @@
 import styles from "./form.module.css";
-const ContactList = ({ contacts, onDelete }) => {
+const ContactList = ({ contacts, onDelete, onEdit }) => {
   //console.log(contacts);
 
   return (
@@ -17,6 +17,7 @@ const ContactList = ({ contacts, onDelete }) => {
                 <span>{contactItem.email}</span>
               </div>
               <div>
+                <button onClick={() => onEdit(contactItem.id)}>edit</button>
                 <button onClick={() => onDelete(contactItem.id)}>delete</button>
               </div>
               {/* <hr /> */}

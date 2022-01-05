@@ -10,7 +10,15 @@ function App() {
     const filteredContact = contacts.filter((c) => c.id !== id);
     setContacts(filteredContact);
   };
-  //todos?
+
+  const editHandler = (id) => {
+    /* console.log("deleted:", e.target); */
+    console.log("id:", id);
+    const filteredContact = contacts.filter((c) => c.id === id);
+    console.log(filteredContact);
+    console.log("Edited:", id);
+    /* setContacts(filteredContact); */
+  };
   return (
     <>
       <Header />
@@ -19,7 +27,11 @@ function App() {
         setContacts={setContacts}
         onDelete={deleteHandler}
       />
-      <ContactList contacts={contacts} onDelete={deleteHandler} />
+      <ContactList
+        contacts={contacts}
+        onDelete={deleteHandler}
+        onEdit={editHandler}
+      />
     </>
   );
 }
