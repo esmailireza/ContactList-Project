@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "../components/form.module.css";
-import ContactList from "./ContactList";
 
 const ContactForm = ({ contacts, setContacts }) => {
   //const [state, setState] = useState([]);
@@ -10,21 +9,6 @@ const ContactForm = ({ contacts, setContacts }) => {
 
   //console.log(state);
 
-  const submitFormHandler = (e) => {
-    e.preventDefault();
-    //console.log(state);
-    setContacts([
-      ...contacts,
-      {
-        id: Math.floor(Math.random() * 10),
-        name: name.name,
-        email: email.email,
-      },
-    ]);
-    /* setEmail("");
-    setName(""); */
-  };
-
   const nameHandler = (e) => {
     //console.log(e.target.value);
     setName({ name: e.target.value });
@@ -33,9 +17,31 @@ const ContactForm = ({ contacts, setContacts }) => {
     //console.log(e.target.value);
     setEmail({ email: e.target.value });
   };
+
+  const submitFormHandler = (e) => {
+    e.preventDefault();
+    //console.log(state);
+    if (!name) {
+      alert("enter a name!");
+    }
+    if (!email) {
+      alert("enter a email!");
+    }
+    setContacts([
+      ...contacts,
+      {
+        id: Math.floor(Math.random() * 10),
+        name: name.name,
+        email: email.email,
+      },
+    ]);
+    /* setName("");
+    setEmail(""); */
+  };
+
   //console.log(name);
   //console.log(email);
-  //console.log(contacts);
+  //console.log(contacts.id);
   return (
     <main className={styles.main}>
       <form className={styles.form} onSubmit={submitFormHandler}>
@@ -47,7 +53,7 @@ const ContactForm = ({ contacts, setContacts }) => {
           id="input_name"
           onChange={nameHandler}
           value={contacts.name}
-          //?
+          placeholder="Name"
         />
         <label htmlFor="input_email">Email</label>
         <input
@@ -56,13 +62,13 @@ const ContactForm = ({ contacts, setContacts }) => {
           id="input_email"
           onChange={emailHandler}
           value={contacts.email}
-          //?
+          placeholder="Email"
         />
         <button type="submit" className={styles.btn}>
           Add
         </button>
       </form>
-      <ContactList contacts={contacts} />
+      {/* <ContactList contacts={contacts} onDelete={() => onDelete(contacts.id)} /> */}
     </main>
   );
 };
