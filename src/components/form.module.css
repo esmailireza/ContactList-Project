@@ -40,7 +40,12 @@ input {
   padding-bottom: 0.4rem;
 }
 .ul {
-  width: 40%;
+  width: 39%;
   list-style-type: none;
   margin-top: 1.5rem;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
