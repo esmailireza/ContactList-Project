@@ -2,12 +2,8 @@ import { useState } from "react";
 import styles from "../components/form.module.css";
 
 const ContactForm = ({ contacts, setContacts }) => {
-  //const [state, setState] = useState([]);
-  //const [input, setInput] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
-  //console.log(state);
 
   const nameHandler = (e) => {
     //console.log(e.target.value);
@@ -41,7 +37,7 @@ const ContactForm = ({ contacts, setContacts }) => {
 
   //console.log(name);
   //console.log(email);
-  //console.log(contacts.id);
+  console.log(contacts);
   return (
     <main className={styles.main}>
       <form className={styles.form} onSubmit={submitFormHandler}>

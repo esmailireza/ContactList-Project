@@ -1,32 +1,28 @@
+import { useState } from "react";
+import ContactForm from "./ContactForm";
 import styles from "./form.module.css";
-const ContactList = ({ contacts, onDelete, onEdit }) => {
+const ContactList = ({ contacts, onDelete }) => {
   //console.log(contacts);
-
-  return (
-    <>
-      {contacts.map((contactItem) => {
-        /* console.log(contactItem);
-        console.log("contact:", contactItem.name);
-        console.log("contact:", contactItem.email);
-        console.log("id:", contactItem.id); */
-        return (
-          <ul className={styles.ul}>
-            <li key={contactItem.id}>
-              <div>
-                <p>{contactItem.name}</p>
-                <span>{contactItem.email}</span>
-              </div>
-              <div>
-                <button onClick={() => onEdit(contactItem.id)}>edit</button>
-                <button onClick={() => onDelete(contactItem.id)}>delete</button>
-              </div>
-              {/* <hr /> */}
-            </li>
-          </ul>
-        );
-      })}
-    </>
-  );
+  const [edit, setEdit] = useState({ id: null, text: "" });
+  const renderContacts = () => {
+    return contacts.map((contactItem) => {
+      return (
+        <ul className={styles.ul}>
+          <li key={contactItem.id}>
+            <div>
+              <p>{contactItem.name}</p>
+              <span>{contactItem.email}</span>
+            </div>
+            <div>
+              <button onClick={() => setEdit(contactItem)}>edit</button>
+              <button onClick={() => onDelete(contactItem.id)}>delete</button>
+            </div>
+          </li>
+        </ul>
+      );
+    });
+  };
+  return <div>{edit.id ? <ContactForm /> : renderContacts()}</div>;
 };
 
 export default ContactList;
