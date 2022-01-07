@@ -1,43 +1,14 @@
-import { useState } from "react";
 import styles from "../components/form.module.css";
 
-const ContactForm = ({ contacts, setContacts }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
-  const nameHandler = (e) => {
-    //console.log(e.target.value);
-    setName({ name: e.target.value });
-  };
-  const emailHandler = (e) => {
-    //console.log(e.target.value);
-    setEmail({ email: e.target.value });
-  };
-
-  const submitFormHandler = (e) => {
-    e.preventDefault();
-    //console.log(state);
-    if (!name) {
-      alert("enter a name!");
-    }
-    if (!email) {
-      alert("enter a email!");
-    }
-    setContacts([
-      ...contacts,
-      {
-        id: Math.floor(Math.random() * 10),
-        name: name.name,
-        email: email.email,
-      },
-    ]);
-    /* setName("");
-    setEmail(""); */
-  };
-
-  //console.log(name);
-  //console.log(email);
-  console.log(contacts);
+const ContactForm = ({
+  emailHandler,
+  nameHandler,
+  submitFormHandler,
+  name,
+  email,
+}) => {
+  console.log(name.name);
+  console.log(email.email);
   return (
     <main className={styles.main}>
       <form className={styles.form} onSubmit={submitFormHandler}>
@@ -48,7 +19,7 @@ const ContactForm = ({ contacts, setContacts }) => {
           name="name"
           id="input_name"
           onChange={nameHandler}
-          value={contacts.name}
+          value={name.name}
           placeholder="Name"
         />
         <label htmlFor="input_email">Email</label>
@@ -57,14 +28,13 @@ const ContactForm = ({ contacts, setContacts }) => {
           name="email"
           id="input_email"
           onChange={emailHandler}
-          value={contacts.email}
+          value={email.email}
           placeholder="Email"
         />
         <button type="submit" className={styles.btn}>
           Add
         </button>
       </form>
-      {/* <ContactList contacts={contacts} onDelete={() => onDelete(contacts.id)} /> */}
     </main>
   );
 };

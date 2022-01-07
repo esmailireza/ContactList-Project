@@ -3,12 +3,13 @@ import ContactForm from "./ContactForm";
 import styles from "./form.module.css";
 const ContactList = ({ contacts, onDelete }) => {
   //console.log(contacts);
-  const [edit, setEdit] = useState({ id: null, text: "" });
+  const [edit, setEdit] = useState({ id: null, name: "", email: "" });
   const renderContacts = () => {
     return contacts.map((contactItem) => {
+      console.log(edit);
       return (
-        <ul className={styles.ul}>
-          <li key={contactItem.id}>
+        <ul className={styles.ul} key={contactItem.id}>
+          <li>
             <div>
               <p>{contactItem.name}</p>
               <span>{contactItem.email}</span>
@@ -22,6 +23,7 @@ const ContactList = ({ contacts, onDelete }) => {
       );
     });
   };
+  console.log(edit.id);
   return <div>{edit.id ? <ContactForm /> : renderContacts()}</div>;
 };
 
