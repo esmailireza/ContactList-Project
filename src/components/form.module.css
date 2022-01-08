@@ -55,7 +55,10 @@ input {
 .ul {
   width: 39%;
   list-style-type: none;
-  margin-top: 1.5rem;
+  margin-top: 0.8rem;
+  background-color: rgb(241, 240, 240);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 li {
   display: flex;
@@ -64,7 +67,7 @@ li {
 }
 button {
   border: 0;
-  background-color: white;
+  background-color: rgb(241, 240, 240);
 }
 .icon {
   color: red;

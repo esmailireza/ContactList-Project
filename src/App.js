@@ -3,6 +3,7 @@ import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
 import Header from "./components/Header";
 import styles from "./components/form.module.css";
+import { useEffect } from "react";
 function App() {
   const [contacts, setContacts] = useState([]);
 
@@ -17,6 +18,18 @@ function App() {
     const filteredComponent = contacts.filter((c) => c.id !== id);
     setContacts(filteredComponent);
   };
+
+  // use to localStorage
+
+  //1-getItem
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+    if (savedContacts) setContacts(savedContacts);
+  }, []);
+  //2-setItem
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <div className={styles.main}>
