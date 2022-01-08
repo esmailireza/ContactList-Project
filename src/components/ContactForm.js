@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../components/form.module.css";
-const ContactForm = ({ submitFormHandler }) => {
+const ContactForm = ({ submitFormHandler, history }) => {
   const [contact, setContact] = useState({ name: "", email: "" });
   const submitContact = (e) => {
     if (!contact.name || !contact.email) {
@@ -11,6 +11,7 @@ const ContactForm = ({ submitFormHandler }) => {
     e.preventDefault();
     submitFormHandler(contact);
     setContact({ name: "", email: "" });
+    history.push("/");
   };
 
   const changeHandler = (e) => {

@@ -4,6 +4,7 @@ import ContactList from "./components/ContactList";
 import Header from "./components/Header";
 import styles from "./components/form.module.css";
 import { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 function App() {
   const [contacts, setContacts] = useState([]);
 
@@ -34,8 +35,27 @@ function App() {
   return (
     <div className={styles.main}>
       <Header />
-      <ContactForm submitFormHandler={submitFormHandler} />
-      <ContactList contacts={contacts} onDelete={deleteContactHandler} />
+      <Switch>
+        <Route
+          path="/add"
+          render={(props) => (
+            <ContactForm submitFormHandler={submitFormHandler} {...props} />
+          )}
+        />
+        <Route
+          path="/"
+          exact
+          render={(props) => (
+            <ContactList
+              contacts={contacts}
+              onDelete={deleteContactHandler}
+              {...props}
+            />
+          )}
+        />
+      </Switch>
+      {/* <ContactForm submitFormHandler={submitFormHandler} />
+      <ContactList contacts={contacts} onDelete={deleteContactHandler} /> */}
     </div>
   );
 }
