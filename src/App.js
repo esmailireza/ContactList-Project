@@ -2,72 +2,28 @@ import { useState } from "react/cjs/react.development";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
 import Header from "./components/Header";
+import styles from "./components/form.module.css";
 function App() {
   const [contacts, setContacts] = useState([]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
 
-  const deleteHandler = (id) => {
-    /* console.log("deleted:", e.target); */
-    console.log("id:", id);
-    const filteredContact = contacts.filter((c) => c.id !== id);
-    setContacts(filteredContact);
-  };
-
-  const editHandler = (id) => {
-    /* console.log("deleted:", e.target); */
-    console.log("id:", id);
-    const filteredContact = contacts.filter((c) => c.id === id);
-    console.log(filteredContact);
-    console.log("Edited:", id);
-    /* setContacts(filteredContact); */
-  };
-
-  const nameHandler = (e) => {
-    setName({ name: e.target.value });
-  };
-  const emailHandler = (e) => {
-    setEmail({ email: e.target.value });
-  };
-
-  const submitFormHandler = (e) => {
-    e.preventDefault();
-    if (!name) {
-      alert("enter a name!");
-    }
-    if (!email) {
-      alert("enter a email!");
-    }
+  const submitFormHandler = (contact) => {
     setContacts([
       ...contacts,
-      {
-        id: Math.floor(Math.random() * 10),
-        name: name.name,
-        email: email.email,
-      },
+      { id: Math.floor(Math.random() * 100), ...contact },
     ]);
-    /* setName("");
-    setEmail(""); */
+  };
+
+  const deleteContactHandler = (id) => {
+    const filteredComponent = contacts.filter((c) => c.id !== id);
+    setContacts(filteredComponent);
   };
 
   return (
-    <>
+    <div className={styles.main}>
       <Header />
-      <ContactForm
-        contacts={contacts}
-        onDelete={deleteHandler}
-        submitFormHandler={submitFormHandler}
-        nameHandler={nameHandler}
-        emailHandler={emailHandler}
-        name={name}
-        email={email}
-      />
-      <ContactList
-        contacts={contacts}
-        onDelete={deleteHandler}
-        onEdit={editHandler}
-      />
-    </>
+      <ContactForm submitFormHandler={submitFormHandler} />
+      <ContactList contacts={contacts} onDelete={deleteContactHandler} />
+    </div>
   );
 }
 
