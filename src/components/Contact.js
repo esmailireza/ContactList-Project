@@ -1,4 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import styles from "./form.module.css";
 
 const Contact = ({ onDelete, contact }) => {
@@ -8,8 +9,10 @@ const Contact = ({ onDelete, contact }) => {
     <ul className={styles.ul} key={id}>
       <li>
         <div>
-          <p>{name}</p>
-          <span>{email}</span>
+          <Link to={{ pathname: `user/${id}`, state: { contact: contact } }}>
+            <p>{name}</p>
+            <span>{email}</span>
+          </Link>
         </div>
         <div>
           <button onClick={() => onDelete(id)}>

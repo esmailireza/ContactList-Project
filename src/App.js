@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import styles from "./components/form.module.css";
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import ContactDetail from "./components/ContactDetail";
 function App() {
   const [contacts, setContacts] = useState([]);
 
@@ -36,6 +37,7 @@ function App() {
     <div className={styles.main}>
       <Header />
       <Switch>
+        <Route path="/user/:id" component={ContactDetail} />
         <Route
           path="/add"
           render={(props) => (
