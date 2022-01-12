@@ -7,20 +7,28 @@ import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ContactDetail from "./components/ContactDetail";
 import getContacts from "./services/getContactsService";
+import deleteOneContatc from "./services/deleteContactsService";
+import addOneContact from "./services/addContactService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
 
-  const submitFormHandler = (contact) => {
-    setContacts([
-      ...contacts,
-      { id: Math.floor(Math.random() * 100), ...contact },
-    ]);
+  const submitFormHandler = async (contact) => {
+    try {
+      setContacts([
+        ...contacts,
+        { id: Math.floor(Math.random() * 100), ...contact },
+      ]);
+      await addOneContact(contact);
+    } catch (error) {}
   };
 
-  const deleteContactHandler = (id) => {
-    const filteredComponent = contacts.filter((c) => c.id !== id);
-    setContacts(filteredComponent);
+  const deleteContactHandler = async (id) => {
+    try {
+      await deleteOneContatc(id);
+      const filteredComponent = contacts.filter((c) => c.id !== id);
+      setContacts(filteredComponent);
+    } catch (error) {}
   };
 
   // use to localStorage
@@ -35,11 +43,6 @@ function App() {
       fetchContacts();
     } catch (error) {}
   }, []);
-
-  //2-setItem
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
 
   return (
     <div className={styles.main}>
