@@ -1,7 +1,5 @@
 import http from "./httpService";
 
-function getContacts() {
+export default function getContacts() {
   return http.get("/contacts");
 }
-
-export default getContacts();

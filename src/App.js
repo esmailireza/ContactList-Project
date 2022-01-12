@@ -6,7 +6,7 @@ import styles from "./components/form.module.css";
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ContactDetail from "./components/ContactDetail";
-import axios from "axios";
+import getContacts from "./services/getContactsService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -27,11 +27,13 @@ function App() {
 
   //1-getItem
   useEffect(() => {
-    const getContacts = async () => {
-      const { data } = await axios.get("http://localhost:3001/contacts");
+    const fetchContacts = async () => {
+      const { data } = await getContacts();
       setContacts(data);
     };
-    getContacts();
+    try {
+      fetchContacts();
+    } catch (error) {}
   }, []);
 
   //2-setItem
