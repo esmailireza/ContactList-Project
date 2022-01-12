@@ -6,7 +6,8 @@ import styles from "./components/form.module.css";
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import ContactDetail from "./components/ContactDetail";
-import getContacts from "./services/getContactsService";
+import axios from "axios";
+
 function App() {
   const [contacts, setContacts] = useState([]);
 
@@ -26,14 +27,13 @@ function App() {
 
   //1-getItem
   useEffect(() => {
-    //const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-    //if (savedContacts) setContacts(savedContacts);
-    const fetchContacts = async () => {
-      const { data } = await getContacts();
+    const getContacts = async () => {
+      const { data } = await axios.get("http://localhost:3001/contacts");
       setContacts(data);
     };
-    fetchContacts();
+    getContacts();
   }, []);
+
   //2-setItem
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
