@@ -9,6 +9,7 @@ import ContactDetail from "./components/ContactDetail";
 import getContacts from "./services/getContactsService";
 import deleteOneContatc from "./services/deleteContactsService";
 import addOneContact from "./services/addContactService";
+import EditContact from "./components/EditContact";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -22,6 +23,8 @@ function App() {
       await addOneContact(contact);
     } catch (error) {}
   };
+
+  const editFormHandler = (contact) => {};
 
   const deleteContactHandler = async (id) => {
     try {
@@ -48,6 +51,12 @@ function App() {
     <div className={styles.main}>
       <Header />
       <Switch>
+        <Route
+          path="/edit/:id"
+          render={(props) => (
+            <EditContact editFormHandler={editFormHandler} {...props} />
+          )}
+        />
         <Route path="/user/:id" component={ContactDetail} />
         <Route
           path="/add"
@@ -67,8 +76,6 @@ function App() {
           )}
         />
       </Switch>
-      {/* <ContactForm submitFormHandler={submitFormHandler} />
-      <ContactList contacts={contacts} onDelete={deleteContactHandler} /> */}
     </div>
   );
 }
