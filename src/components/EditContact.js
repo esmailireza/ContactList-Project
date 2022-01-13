@@ -11,7 +11,7 @@ const EditContact = ({ editFormHandler, history, match }) => {
     }
 
     e.preventDefault();
-    editFormHandler(contact);
+    editFormHandler(contact, match.params.id);
     setContact({ name: "", email: "" });
     history.push("/");
   };
@@ -52,7 +52,7 @@ const EditContact = ({ editFormHandler, history, match }) => {
           placeholder="Email"
         />
         <button type="submit" className={styles.btn}>
-          Edit
+          update Contact
         </button>
       </form>
     </main>
