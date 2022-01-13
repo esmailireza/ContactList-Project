@@ -66,14 +66,20 @@ li {
   justify-content: space-between;
   align-items: center;
 }
-button {
+.btnDelete {
   border: 0;
   background-color: rgb(241, 240, 240);
 }
-.icon {
+.iconDelete {
   color: #dc2626;
   font-size: 1.1rem;
   cursor: pointer;
+}
+.iconEdit {
+  color: #2a41c5;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-right: 1rem;
 }
 .nav {
   display: flex;
@@ -88,4 +94,9 @@ button {
   padding: 0.3rem 0.5rem;
   text-decoration: none;
   color: white;
+}
+
+.btnGroup {
+  display: flex;
+  align-items: center;
 }
