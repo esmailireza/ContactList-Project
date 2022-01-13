@@ -1,4 +1,4 @@
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./form.module.css";
 
@@ -15,9 +15,16 @@ const Contact = ({ onDelete, contact }) => {
           </Link>
         </div>
         <div>
-          <button onClick={() => onDelete(id)}>
-            <FaTrashAlt className={styles.icon} />
-          </button>
+          <div className={styles.btnGroup}>
+            <Link to={`/edit/${id}`}>
+              <button className={styles.btnDelete}>
+                <FaRegEdit className={styles.iconEdit} />
+              </button>
+            </Link>
+            <button className={styles.btnDelete} onClick={() => onDelete(id)}>
+              <FaTrashAlt className={styles.iconDelete} />
+            </button>
+          </div>
         </div>
       </li>
     </ul>
