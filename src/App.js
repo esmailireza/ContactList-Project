@@ -14,6 +14,7 @@ import updateContact from "./services/updateContact";
 
 function App() {
   const [contacts, setContacts] = useState([]);
+  const [allContacts, setAllContacts] = useState(null);
 
   const submitFormHandler = async (contact) => {
     try {
@@ -27,11 +28,10 @@ function App() {
 
   const editFormHandler = async (contact, id) => {
     try {
-    } catch (error) {
       await updateContact(id, contact);
       const { data } = await getContacts();
       setContacts(data);
-    }
+    } catch (error) {}
   };
 
   const deleteContactHandler = async (id) => {
@@ -49,6 +49,7 @@ function App() {
     const fetchContacts = async () => {
       const { data } = await getContacts();
       setContacts(data);
+      setAllContacts(data);
     };
     try {
       fetchContacts();
@@ -78,6 +79,8 @@ function App() {
           render={(props) => (
             <ContactList
               contacts={contacts}
+              setContacts={setContacts}
+              allContacts={allContacts}
               onDelete={deleteContactHandler}
               {...props}
             />
