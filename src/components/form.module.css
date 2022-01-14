@@ -85,7 +85,8 @@ li {
   display: flex;
   width: 39%;
   justify-content: space-between;
-  margin-top: 1rem;
+  align-items: center;
+  margin: 2rem 0;
 }
 
 .buttonAdd {
@@ -99,4 +100,8 @@ li {
 .btnGroup {
   display: flex;
   align-items: center;
+}
+
+.searchBar {
+  margin: auto 0;
 }
