@@ -35,7 +35,9 @@ const ContactList = ({ contacts, setContacts, allContacts, onDelete }) => {
         </Link>
       </div>
       {contacts.map((contact) => {
-        return <Contact onDelete={onDelete} contact={contact} />;
+        return (
+          <Contact onDelete={onDelete} contact={contact} key={contact.id} />
+        );
       })}
     </>
   );
