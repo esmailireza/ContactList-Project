@@ -28,7 +28,7 @@ const EditContact = ({ editFormHandler, history, match }) => {
       } catch (error) {}
     };
     localFetch();
-  }, []);
+  }, [match.params.id]);
   return (
     <main /* className={styles.main} */>
       <form className={styles.form} onSubmit={submitContact}>
