@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styles from "../components/form.module.css";
 import getOneContact from "../services/getOneContact";
 const EditContact = ({ editFormHandler, history, match }) => {
-  console.log(match);
   const [contact, setContact] = useState({ name: "", email: "" });
   const submitContact = (e) => {
     if (!contact.name || !contact.email) {
